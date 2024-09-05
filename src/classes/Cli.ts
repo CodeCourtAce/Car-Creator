@@ -4,7 +4,8 @@ import Truck from "./Truck.js";
 import Car from "./Car.js";
 import Motorbike from "./Motorbike.js";
 import Wheel from "./Wheel.js";
-import { start } from "repl";
+import Vehicle from "./Vehicle.js";
+
 
 // define the Cli class
 class Cli {
@@ -65,13 +66,17 @@ class Cli {
       ])
       .then((answers) => {
         if (answers.vehicleType === 'Car') {
-          // create a car
+          //this creates a car
           this.createCar();
         }
       
-        else if (answers.vehicleType === 'Truck') {
+        if (answers.vehicleType === 'Truck') {
+          //this creates a truck
           this.createTruck();
-        } else {
+        }
+
+        if (answers.vehicleType === 'Motorbike') {  
+          //this creates a motorbike
           this.createMotorbike();
         }
 
@@ -333,7 +338,7 @@ class Cli {
           // find the selected vehicle and print its details
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].printDetails();
+              (this.vehicles[i] as Car).printDetails();
 
             }
           }
@@ -341,49 +346,49 @@ class Cli {
           // find the selected vehicle and start it
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].start();
+              (this.vehicles[i] as Vehicle).start();
             }
           }
         } else if (answers.action === 'Accelerate 5 MPH') {
           // find the selected vehicle and accelerate it by 5 MPH
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].accelerate(5);
+              (this.vehicles[i] as Vehicle).accelerate(5);
             }
           }
         } else if (answers.action === 'Decelerate 5 MPH') {
           // find the selected vehicle and decelerate it by 5 MPH
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].decelerate(5);
+              (this.vehicles[i] as Vehicle).decelerate(5);
             }
           }
         } else if (answers.action === 'Stop vehicle') {
           // find the selected vehicle and stop it
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].stop();
+              (this.vehicles[i] as Vehicle).stop();
             }
           }
         } else if (answers.action === 'Turn right') {
           // find the selected vehicle and turn it right
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].turn('right');
+              (this.vehicles[i] as Vehicle).turn('right');
             }
           }
         } else if (answers.action === 'Turn left') {
           // find the selected vehicle and turn it left
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].turn('left');
+              (this.vehicles[i] as Vehicle).turn('left');
             }
           }
         } else if (answers.action === 'Reverse') {
           // find the selected vehicle and reverse it
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.vehicles[i].reverse();
+              (this.vehicles[i] as Vehicle).reverse();
             }
           }
         }
